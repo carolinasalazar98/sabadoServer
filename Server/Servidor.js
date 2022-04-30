@@ -8,6 +8,7 @@ import { rutas } from "../routes/rutas.js";
 export class Servidor {
   constructor() {
     this.app = express(); //ATRIBUTO APP guarda a express
+    this.llamarAuxiliares(); //ACTIVAR MIDLEWARES O AYUDAS
     this.atenderPeticiones();
   }
 
@@ -21,5 +22,9 @@ export class Servidor {
     //LLAMANDO EL ARHIVO DE RUTAS
     //('/') cualquier ruta que llegue
     this.app.use("/", rutas);
+  }
+
+  llamarAuxiliares(){
+    this.app.use(express.json()) //AYUDANDANTE PARA RECIBIR DATOS EN EL  BODY DE LA PETICIÓN
   }
 }
