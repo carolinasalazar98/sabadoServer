@@ -3,8 +3,8 @@
 //2. EJECUTAR LOGICA DE NEGOCIO
 //3. LLAMAR A LA CAPA DE SERVICIOS
 //3. ENVIAR LAS RESPUESTAS AL CLIENTE
-
 import { request } from "express";
+import { ServicioReserva } from "../services/ServicioReserva.js";
 
 export class ControladorReserva {
   //Logica para el servicio
@@ -12,46 +12,44 @@ export class ControladorReserva {
 
   
   //BUSCAR POR ID GET
-  buscarPorId(request, response) {
-    let datos = [
-      {
-        nom_cliente: "carolina Salazar",
-        fecha_ing: "mayo 01-2022",
-        fecha_salida: "mayo 20-2022",
-        num_personas: 3,
-      },
-    ]; //Borrar despues
+  async buscarPorId(request, response) {
+
+   let servicioReserva= new ServicioReserva()
     let id = request.params.id;
     console.log(id);
     try {
       //todo sale bien
       response.status(200).json({
         mensaje: "exito buscando los datos " + id,
-        data: datos,
+        data: await servicioReserva.buscarPorId(id),
         estado: true,
       });
     } catch (error) {
       response.status(400).json({
         mensaje: "Error buscando los datos: " + error,
         data: [],
-        estado: falso,
+        estado: false,
       });
     }
   }
 
   //REGISTRAR RESERVA POST
 
-  registrarReserva(request, response) {
+ async registrarReserva(request, response) {
+
+    let servicioReserva= new ServicioReserva()
     let datosPeticion = request.body;
     try {
+
+      await servicioReserva.registrar(datosPeticion)
       response.status(200).json({
         mensaje: "EXITO AGREGANDO LA RESERVA ",
-        data: datosPeticion,
+        data: null,
         estado: true,
       });
     } catch (error) {
       response.status(400).json({
-        mensaje: "FALLAMOS REGISTRANDO LA RESERVA ",
+        mensaje: "FALLAMOS REGISTRANDO LA RESERVA "+ error,
         data: [],
         estado: false,
       });
@@ -60,13 +58,17 @@ export class ControladorReserva {
 
 
   //EDITAR RESERVA PUT
-  editarReserva(request, response) {
+  async editarReserva(request, response) {
+
+    let servicioReserva= new ServicioReserva()
     let id = request.params.id;
     let datosPeticion = request.body;
     try {
+
+      await  servicioReserva.editar(id, datosPeticion)
       response.status(200).json({
         mensaje: "EXITO EDITANDO SU RESERVA ",
-        data: datosPeticion,
+        data: null,
         estado: true,
       });
     } catch (error) {
@@ -80,12 +82,16 @@ export class ControladorReserva {
 
 
   //ELIMINANDO RESERVA DELTE
-  eliminarReserva(request, response) {
+  async eliminarReserva(request, response) {
+
+    let servicioReserva= new ServicioReserva()
     let id = request.params.id;
     try {
+
+      await servicioReserva.eliminar(id)
       response.status(200).json({
         mensaje: "EXITO ELIMINANDO LA HABITACION RESERVADA ",
-        data: [],
+        data: null,
         estado: true,
       });
     } catch (error) {

@@ -8,11 +8,12 @@ const Schema = mongoose.Schema; //ESQUEMA DE DATOS (QUE DATOS TIENE MI MODELO)
 //CREO MI PROPIO ESQUEMA DE DATOS
 
 const Reserva = new Schema({
-    idCliente:{
-        type:String,
+    
+    nombre:{
+        type: String,
         required: true
     },
-    tarjetaCredito:{
+    apellido:{
         type: String,
         required: true
     },
@@ -24,7 +25,7 @@ const Reserva = new Schema({
         type: Date,
         required: true
     },
-    idHabitacion:{
+    telefono:{
         type: String,
         required: true
     },

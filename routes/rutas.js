@@ -15,23 +15,15 @@ export let rutas = express.Router();
 
 //Lista de servivicos que ofrece mi API
 rutas.get("/api/v1/sabado", controladorHabitacion.buscarTodas);
-
-
 rutas.get("/api/v1/sabado/:id", controladorHabitacion.buscarPorId);
-
 rutas.post("/api/v1/sabado", controladorHabitacion.registrar);
-
 rutas.put("/api/v1/sabado/:id", controladorHabitacion.editar);
-
 rutas.delete("/api/v1/sabado/:id", controladorHabitacion.eliminar);
 
 // rutas Controlador Reserva
-rutas.get("/api/v2/avanzada/:id", controladorReserva.buscarPorId);
-
-rutas.post("/api/v2/avanzada", controladorReserva.registrarReserva);
-
-rutas.put("/api/v2/avanzada/:id", controladorReserva.editarReserva);
-
-rutas.delete("/api/v2/avanzada/:id", controladorReserva.eliminarReserva);
+rutas.get("/api/v2/reserva/:id", controladorReserva.buscarPorId);
+rutas.post("/api/v2/reserva", controladorReserva.registrarReserva);
+rutas.put("/api/v2/reserva/:id", controladorReserva.editarReserva);
+rutas.delete("/api/v2/reserva/:id", controladorReserva.eliminarReserva);
 
 
