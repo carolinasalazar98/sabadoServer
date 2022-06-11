@@ -3,7 +3,8 @@ import express from "express";
 
 //Importo el controlador de habitaciones
 import { ControladorHabitacion } from "../Controllers/controladorHabitacion.js";
-import { ControladorReserva } from "../Controllers/controladorReserva.js";
+//import { ControladorReserva } from "../Controllers/controladorReserva.js";
+import { ControladorReserva } from "../Controllers/prueba.js";
 //Creouna objeto de la clase controlador habitacion
 let controladorHabitacion = new ControladorHabitacion();
 let controladorReserva = new ControladorReserva();
@@ -22,8 +23,8 @@ rutas.delete("/api/v1/sabado/:id", controladorHabitacion.eliminar);
 
 // rutas Controlador Reserva
 rutas.get("/api/v2/reserva/:id", controladorReserva.buscarPorId);
-rutas.post("/api/v2/reserva", controladorReserva.registrarReserva);
-rutas.put("/api/v2/reserva/:id", controladorReserva.editarReserva);
-rutas.delete("/api/v2/reserva/:id", controladorReserva.eliminarReserva);
+rutas.post("/api/v2/reserva", controladorReserva.registrar);
+rutas.put("/api/v2/reserva/:id", controladorReserva.editar);
+rutas.delete("/api/v2/reserva/:id", controladorReserva.eliminar);
 
 

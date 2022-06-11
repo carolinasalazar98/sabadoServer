@@ -8,6 +8,11 @@ const Schema = mongoose.Schema; //ESQUEMA DE DATOS (QUE DATOS TIENE MI MODELO)
 //CREO MI PROPIO ESQUEMA DE DATOS
 
 const Reserva = new Schema({
+
+    idHabitacion:{
+        type: String,
+        required: true
+    },
     
     nombre:{
         type: String,
@@ -21,7 +26,7 @@ const Reserva = new Schema({
         type: Date,
         required: true
     },
-    fechaSalida:{
+    fechaOut:{
         type: Date,
         required: true
     },
@@ -29,11 +34,16 @@ const Reserva = new Schema({
         type: String,
         required: true
     },
-    costo:{
-        type:Number,
+    num_personas:{
+        type: Number,
         required: true
     },
+    costo:{
+        type:Number,
+        required:false
+    },
 })
+
 
 //SE ENVIA EL MODELO DE DATOS
 export const modeloReserva= mongoose.model('Reservas', Reserva);

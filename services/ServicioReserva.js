@@ -10,11 +10,6 @@ export class ServicioReserva{
         return await reservaRegistrar.save()
     }
 
-    async buscarTodas(){
-        let reservas= await modeloReserva.find()
-        return reservas
-    }
-
     async buscarPorId(id){
         let reserva= await modeloReserva.findById(id)
         return reserva
